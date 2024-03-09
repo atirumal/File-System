@@ -285,7 +285,7 @@ void write_block_bitmap(int fd)
 	// TODO It's all yours
 	u8 map_value[BLOCK_SIZE];
 
-	for (int i = 0; i < 1024; i++) {
+	for (int i = 0; i < BLOCK_SIZE; i++) {
 		if (i <= 1) {
 			map_value[i] = 0xff;
 		} else if (i == 2) {
@@ -315,7 +315,7 @@ void write_inode_bitmap(int fd)
 
 	// TODO It's all yours
 	u8 map_value[BLOCK_SIZE];
-	for (int i = 0; i < 1024; i++) {
+	for (int i = 0; i < BLOCK_SIZE; i++) {
 		if (i == 0) {
 			map_value[i] = 0xff;
 		} else if (i == 1) {
@@ -445,29 +445,34 @@ void write_root_dir_block(int fd)
 
 	ssize_t bytes_remaining = BLOCK_SIZE;
 
-	struct ext2_dir_entry curr_dir = {0};
-	dir_entry_set(curr_dir, EXT2_ROOT_INO, ".");
-	dir_entry_write(curr_dir, fd);
-	bytes_remaining -= curr_dir.rec_len;
+	struct ext2_dir_entry current_entry = {0};
+	dir_entry_set(current_entry, EXT2_ROOT_INO, ".");
+	dir_entry_write(current_entry, fd);
 
-	struct ext2_dir_entry par_dir = {0};
-	dir_entry_set(par_dir, EXT2_ROOT_INO, "..");
-	dir_entry_write(par_dir, fd);
-	bytes_remaining -= par_dir.rec_len;
+	bytes_remaining -= current_entry.rec_len;
+
+	struct ext2_dir_entry parent_entry = {0};
+	dir_entry_set(parent_entry, EXT2_ROOT_INO, "..");
+	dir_entry_write(parent_entry, fd);
+
+	bytes_remaining -= parent_entry.rec_len;
 
 	struct ext2_dir_entry helloworld = {0};
 	dir_entry_set(helloworld, HELLO_WORLD_INO, "hello-world"); 
 	dir_entry_write(helloworld, fd);
+
 	bytes_remaining -= helloworld.rec_len;
 
 	struct ext2_dir_entry hello_sl = {0};
 	dir_entry_set(hello_sl, HELLO_INO, "hello"); 
 	dir_entry_write(hello_sl, fd);
+
 	bytes_remaining -= hello_sl.rec_len;
 
 	struct ext2_dir_entry lost_and_found = {0};
 	dir_entry_set(lost_and_found, LOST_AND_FOUND_INO, "lost+found");
 	dir_entry_write(lost_and_found, fd);
+
 	bytes_remaining -= lost_and_found.rec_len;
 
 	struct ext2_dir_entry fill_entry = {0}; 
