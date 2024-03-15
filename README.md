@@ -29,6 +29,9 @@ Mount your filesystem (loop lets you use a file):
 ```shell 
 sudo mount -o loop cs111-base.img mnt
 ```  
+Now you can use the filesystem, for example by running:
+```shell
+ls -ain mnt/```
 
 ## Cleaning up
 Unmount the filesystem:  
