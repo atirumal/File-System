@@ -1,6 +1,6 @@
 # EXT2 File System
 
-In this lab, I successfully implemented the following 1 MiB ext2 file system with 2 directories, 1 regular file, and 1 symbolic link. This file system contains a superblock, group descriptor, block bitmap, inode bitmap, and inode table. I established the directory structure by creating two directories: one named root and the other named lost+found. Moreover, I added a regular file called hello-world and a symbolic link named hello (which points to hello-world), ensuring they were properly linked within the directory structure. 
+I have implemented the following 1 MiB ext2 file system with 2 directories, 1 regular file, and 1 symbolic link. This file system contains a superblock, group descriptor, block bitmap, inode bitmap, and inode table. I established the directory structure by creating two directories: one named root and the other named lost+found. Moreover, I added a regular file called hello-world and a symbolic link named hello (which points to hello-world), ensuring they were properly linked within the directory structure. 
 
 ## Building
 Build the program by running:  
