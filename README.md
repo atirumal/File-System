@@ -1,10 +1,12 @@
 # Custom File System
 
-• Designed a custom file system in C, utilizing libuuid for generating unique identifiers and glibc for snapshotting capabilities
+- Designed a custom file system in C, utilizing libuuid for generating unique identifiers and glibc for snapshotting capabilities
 that allow users to create point-in-time copies, enabling quick recovery and version control of files
-• Developed multi-layered dynamic block allocation system, resulting in 30% reduction of fragmentation and 40% improvement
+
+- Developed multi-layered dynamic block allocation system, resulting in 30% reduction of fragmentation and 40% improvement
 in read/write performance across multiple threads
-• Integrated a data compression mechanism using Zlib and secure hashing with OpenSSL to improve I/O efficiency, reduce
+
+- Integrated a data compression mechanism using Zlib and secure hashing with OpenSSL to improve I/O efficiency, reduce
 storage space, and ensure data integrity through cryptographic verification
 
 ## Building
